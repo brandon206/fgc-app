@@ -1,23 +1,26 @@
 {
-  "name": "react_starter",
+  "name": "fgc_app",
   "version": "1.0.0",
-  "description": "Starting setup for react redux project",
+  "description": "Demo app for FGC tournament information",
   "main": "index.js",
   "scripts": {
     "start": "node dev_server.js",
     "bundle": "webpack --config webpack.prod.js --progress",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Scott Bowler",
+  "author": "Brandon Park",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Learning-Fuze/react_starter.git"
+    "url": "https://github.com/Learning-Fuze/fgc-app.git"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "materialize-css": "^1.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.1"
   },
   "devDependencies": {
