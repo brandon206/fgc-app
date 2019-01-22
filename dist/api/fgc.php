@@ -1,5 +1,5 @@
 <?php
-$proxyURL = "http://rank.shoryuken.com/api/top?game=DBFZ&size=20&format=json";
+$proxyURL = "http://rank.shoryuken.com/api/top";
 $acceptableHeaders = [];
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: ". implode(',',$acceptableHeaders));

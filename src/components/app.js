@@ -22,21 +22,41 @@ class App extends Component {
     }
 
     getPlayerData() {
-        fetch("fgc.php")
-        .then(res => res.json()).then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    players: result
-                });
-            },
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error
-                });
-            }
-        )
+        // fetch("/api/fgc.php")
+        // .then(res => res.json()).then(
+        //     (result) => {
+        //         this.setState({
+        //             isLoaded: true,
+        //             players: result
+        //         });
+        //     },
+        //     (error) => {
+        //         this.setState({
+        //             isLoaded: true,
+        //             error
+        //         });
+        //     }
+        // )
+        try {
+            const response = axios.get("/api/fgc.php", {
+                params: {
+                    game: "DBFZ",
+                    size: 20,
+                    format: "json"
+                }
+            })
+
+            this.setState({
+                isLoaded: true,
+                players: response
+            });
+        } catch(err) {
+            this.setState({
+                isLoaded: true,
+                error
+            });
+        }
+
         // const getTopPlayersDBFZ = 'top?game=DBFZ&size=50';
         // const resp = axios.get(BASE_URL + getTopPlayersDBFZ).then((resp)=> {
         //     console.log('Server running: ', resp);
