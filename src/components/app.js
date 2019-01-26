@@ -1,6 +1,6 @@
 import 'materialize-css/dist/css/materialize.min.css';
 import 'materialize-css/dist/js/materialize';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import '../assets/css/app.scss';
 import logo from '../assets/images/logo.svg';
@@ -21,7 +21,7 @@ class App extends Component {
         this.getPlayerData();
     }
 
-    getPlayerData() {
+    async getPlayerData() {
         // fetch("/api/fgc.php")
         // .then(res => res.json()).then(
         //     (result) => {
@@ -38,7 +38,7 @@ class App extends Component {
         //     }
         // )
         try {
-            const response = axios.get("/api/fgc.php", {
+            const response = await axios.get("/api/fgc.php", {
                 params: {
                     game: "DBFZ",
                     size: 20,
@@ -48,8 +48,12 @@ class App extends Component {
 
             this.setState({
                 isLoaded: true,
-                players: response
+                players: response.data
             });
+
+            return response;
+
+
         } catch(err) {
             this.setState({
                 isLoaded: true,
@@ -66,22 +70,34 @@ class App extends Component {
 
     render() {
         const { error, isLoaded, players } = this.state;
+        console.log("this is the state: ", players);
             if (error) {
                 return <div>Error: {error.message}</div>;
             } else if (!isLoaded) {
                 return <div>Loading...</div>;
             } else {
                 return (
-                    <ul>
-                    {players.map(players => (
-                        <li key={players.name}>
-                        {players.fullname}
-                        </li>
-                    ))}
-                    </ul>
+                    <div className="container">
+                        <h1 className="center">DBFZ Leaderboards</h1>
+                        <Fragment>
+                        {players.map(players => (
+                            <ul key={players.name}>
+                                <li>{players.rank}</li>
+                                <li>{players.name}</li>
+                                <li>{players.fullname}</li>
+                                <li>{players.country}</li>
+                            </ul>
+                        ))}
+                        </Fragment>
+                    </div>
                 );
             }
         }
-    }
+        // console.log("the app is live!");
+        // return (
+        //     <div>App is live</div>
+        // );
+    };
+// };
 
 export default App;
