@@ -1,0 +1,19 @@
+.dbfz-banner {
+    width: 100%;
+    display:block;
+    margin:auto;
+}
+
+.dbfz-header {
+    margin: 0;
+}
+
+.fighter-name {
+    font-weight: 400px;
+    font-size: 2rem;
+}
+
+.fighters-characters, .fighters-fullname, .fighters-country {
+    font-weight: 200px;
+    font-size: 1.5rem;
+}

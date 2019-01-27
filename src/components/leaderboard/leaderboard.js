@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
-import '../assets/css/app.scss';
+import dbfz from '../../assets/images/dbfz-results-banner.png';
+import leaderboardcss from './leaderboard.css';
 
 const BASE_URL = 'http://rank.shoryuken.com/api/';
 
@@ -54,15 +55,21 @@ class Leaderboard extends Component {
                 return <div>Loading...</div>;
             } else {
                 return (
-                    <div className="container">
-                        <h1 className="center">DBFZ Leaderboards</h1>
+                    <div>
+                        <div>
+                            <img className = "dbfz-banner" src= {dbfz} alt="dbfz wallpaper"/>
+                        </div>
+                        <h1 className="dbfz-header center">DBFZ Top 20</h1>
                         <Fragment>
                         {players.map(players => (
                             <ul key={players.name}>
-                                <li>{players.rank}</li>
-                                <li>{players.name}</li>
-                                <li>{players.fullname}</li>
-                                <li>{players.country}</li>
+                                <li className = "fighter-name">{`${players.rank}. ${players.name}`}</li>
+                                <li className = "fighters-characters">{`Characters Used: ${players.character.map((item)=>{
+                                    console.log(item.substring(5));
+                                    return(item.substring(5));
+                                })}`}</li>
+                                <li className = "fighters-fullname">{`Full Name: ${players.fullname}`}</li>
+                                <li className = "fighters-country">{`Country: ${players.country}`}</li>
                             </ul>
                         ))}
                         </Fragment>
