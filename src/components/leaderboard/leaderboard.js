@@ -16,12 +16,13 @@ class Leaderboard extends Component {
     }
 
     componentDidMount() {
+        this.getTop20Data();
         this.getPlayerData();
     }
 
-    async getPlayerData() {
+    async getTop20Data() {
         try {
-            const response = await axios.get("/api/fgc.php", {
+            const response = await axios.get("/api/fgc_top.php", {
                 params: {
                     game: "DBFZ",
                     size: 20,
@@ -40,8 +41,40 @@ class Leaderboard extends Component {
         } catch(err) {
             this.setState({
                 isLoaded: true,
-                error
+                error: err
             });
+        }
+
+    }
+
+    async getPlayerData() {
+        try {
+            const response = await axios.get("/api/fgc_player.php", {
+                // params: {
+                //     type: "player",
+                //     id: "571"
+                // }
+            })
+
+            // search?type=player&fuzzy=false&query=daigo
+
+            this.setState({
+                isLoaded: true,
+                player: response.data
+            });
+
+            console.log(response.data);
+
+            return response;
+
+
+        } catch(err) {
+            this.setState({
+                isLoaded: true,
+                error: err
+            });
+
+            console.log(err);
         }
 
     }
