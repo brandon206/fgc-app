@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import dbfz from '../../assets/images/dbfz-results-banner.png';
 import leaderboardcss from './leaderboard.css';
+import { Link } from 'react-router-dom';
 
 const BASE_URL = 'http://rank.shoryuken.com/api/';
 
@@ -16,12 +17,12 @@ class Leaderboard extends Component {
     }
 
     componentDidMount() {
-        this.getPlayerData();
+        this.getTop20Data();
     }
 
-    async getPlayerData() {
+    async getTop20Data() {
         try {
-            const response = await axios.get("/api/fgc.php", {
+            const response = await axios.get("/api/fgc_top.php", {
                 params: {
                     game: "DBFZ",
                     size: 20,
@@ -40,7 +41,7 @@ class Leaderboard extends Component {
         } catch(err) {
             this.setState({
                 isLoaded: true,
-                error
+                error: err
             });
         }
 
@@ -63,9 +64,8 @@ class Leaderboard extends Component {
                         <Fragment>
                         {players.map(players => (
                             <ul key={players.name}>
-                                <li className = "fighter-name">{`${players.rank}. ${players.name}`}</li>
+                                <Link to = {`/player-profile/${players.id}`} className = "fighter-name" >{`${players.rank}. ${players.name}`}</Link>
                                 <li className = "fighters-characters">{`Characters Used: ${players.character.map((item)=>{
-                                    console.log(item.substring(5));
                                     return(item.substring(5));
                                 })}`}</li>
                                 <li className = "fighters-fullname">{`Full Name: ${players.fullname}`}</li>

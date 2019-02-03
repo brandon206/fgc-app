@@ -16,8 +16,11 @@ class Navbar extends Component {
                             <Link to = "/" >Home</Link>
                         </li>
                         <li>
-                            <Link to = "/player-profile">Player Profile</Link>
+                            <Link to = "/settings">Settings</Link>
                         </li>
+                        {/* <li>
+                            <Link to = "/player-profile">Player Profile</Link>
+                        </li> */}
                     </ul>
                 </div>
             </nav>
