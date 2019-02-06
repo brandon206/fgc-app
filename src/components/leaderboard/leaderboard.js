@@ -13,7 +13,7 @@ class Leaderboard extends Component {
     }
 
     render() {
-        console.log("leaderboard data as props: ", this.props);
+        // console.log("leaderboard data as props: ", this.props);
         const { playerList } = this.props;
 
         console.log("playerlist: ", playerList);
@@ -49,5 +49,5 @@ function mapStateToProps (state){
 
 export default connect(mapStateToProps, {
     // this is the action creator
-    getLeaderboardData : getLeaderboardData
+    getLeaderboardData
 })(Leaderboard);

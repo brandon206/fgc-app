@@ -25,3 +25,24 @@ export function getLeaderboardData(){
         }
     }
 }
+
+export function getPlayerData (){
+    return async function(dispatch){
+        try{
+            const player_id = '571'
+            const response = await axios.get(`/api/fgc_player.php?player_id=${player_id}`);
+
+            console.log("this is resp: ", response);
+
+            dispatch({
+                type: types.GET_PLAYER_DATA,
+                payload: response
+            });
+        } catch(err){
+            dispatch({
+                type: types.ERROR,
+                error: "Error getting Player Profile"
+            });
+        }
+    }
+}
