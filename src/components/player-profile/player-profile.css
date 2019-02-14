@@ -14,3 +14,20 @@
     font-weight: 200px;
     font-size: 1.5rem;
 }
+
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.img-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.player-image {
+    height: 300px;
+}
